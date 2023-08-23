@@ -1,8 +1,5 @@
 package Agent;
 
-
-import org.example.User;
-
 public class Agent extends User {
 
     private int agentId;
