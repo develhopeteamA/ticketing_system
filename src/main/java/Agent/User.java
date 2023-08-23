@@ -1,4 +1,4 @@
-package org.example;
+package Agent;
 
 public class User {
 }
