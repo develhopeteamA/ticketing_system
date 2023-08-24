@@ -36,6 +36,76 @@ public class RoleCRUDOperations {
         }
         entityManager.close();
     }
+    public void deleteRole(long roleId) {
+
+        // Obtaining entity manager from the entity manager factory
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        // Begin entity transaction
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        try {
+            // Find the role by its ID
+            Role role = entityManager.find(Role.class, roleId);
+
+            if (role != null) {
+                // Remove the role from the database
+                entityManager.remove(role);
+
+                // Commit transaction
+                entityTransaction.commit();
+            } else {
+                System.out.println("Role not found with ID: " + roleId);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            entityTransaction.rollback();
+        } finally {
+            entityManager.close();
+        }
+    }
+    public Role getRoleById(long roleId) {
+
+        // Obtaining entity manager from the entity manager factory
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            // Find the role by its ID
+            Role role = entityManager.find(Role.class, roleId);
+            return role;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+
+        return null;
+    }
+    public void updateRole(Role role) {
+
+        // Obtaining entity manager from the entity manager factory
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        // Create entity transaction object and begin transaction
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+
+        try {
+            // Merge the role instance with the existing entity in the persistence context
+            entityManager.merge(role);
+
+            // Commit transaction
+            entityTransaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Rollback the transaction in case of an exception
+            entityTransaction.rollback();
+        } finally {
+            entityManager.close();
+        }
+    }
+
     public static void main (String[] args){
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
