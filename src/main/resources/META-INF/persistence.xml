@@ -12,8 +12,8 @@
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ticketing_system"/>
-            <property name="jakarta.persistence.jdbc.user" value="develhope"/>
-            <property name="jakarta.persistence.jdbc.password" value="Welcome@123"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="ohmyImusingsqlnow@254"/>
 
             <!-- Hibernate settings -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
